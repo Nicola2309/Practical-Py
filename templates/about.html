@@ -1,5 +1,57 @@
 {% extends "base.html" %}
 {%block content%}
-    <h1>About Page</h1>
+
     
+    <h1>{{ pg_title }}</h1>
+	<p>The back story begins thousands of years before the action in the book, with the rise of the eponymous Lord of the
+		Rings, the Dark Lord Sauron, a malevolent reincarnated deity who possessed great supernatural powers and who later
+		became the ruler of the dreaded realm of Mordor. At the end of the First Age of Middle-earth, Sauron survived the
+		catastrophic defeat and chaining of his lord, the ultimate Dark Lord, Morgoth Bauglir (who was formerly counted as
+		one of the Vala, the angelic Powers of the world). During the Second Age, Sauron schemed to gain dominion over
+		Middle-earth. In the disguise as "Annatar" or Lord of Gifts, he aided Celebrimbor and other Elven-smiths of Eregion
+		in the forging of magical rings which confer various powers and effects on their wearers. The most important of
+		these were The Nine, the seven an the three (which he did not touch or know of the three.) called the Rings of Power
+		or Great Rings.
+	</p>
+
+    {% for member in company%}
+
+	<div class="row featurette">
+
+        {% if loop.index % 2 != 0 %}
+
+		<div class="col-md-7">
+			<h3>{{ loop.index }}. {{ member.name }}</h3>
+			<p>
+				{{ member.description }}
+			</p>
+		</div>
+        <div class="col-md-5">
+        <img src="{{ member.image_source }}" alt="" class="featurette-image image-responsive">
+        </div>
+
+        {% else %}
+
+        <div class="col-md-5">
+        <img src="{{ member.image_source }}" alt="" class="featurette-image image-responsive">
+        </div>
+		<div class="col-md-7">
+			<h3>{{ loop.index }}. {{ member.name }}</h3>
+			<p>
+				{{ member.description }}
+			</p>
+		</div>
+
+        {% endif %}
+	
+    </div>
+
+    {% if loop.index != loop.length %}
+
+    <hr class="featurette-divider">
+
+    {% endif %}
+
+    {% endfor %}
+
 {%endblock%}
